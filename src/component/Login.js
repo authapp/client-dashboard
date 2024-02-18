@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import {useAuth} from "./AuthProvider";
+import {Navigate} from "react-router-dom";
 
 
 const LoginContainer = styled.div`
@@ -40,7 +41,7 @@ const LoginButton = styled.button`
     font-size: 15px;
     border: none;
     cursor: pointer;
-    
+
     &:hover {
         scale: 120%;
         font-weight: bold;
@@ -48,7 +49,10 @@ const LoginButton = styled.button`
 `
 
 const Login = () => {
-    const {onLogin} = useAuth();
+    const {user, onLogin} = useAuth();
+    if (user) {
+        return <Navigate to="/dashboard/registrations" replace/>
+    }
     return (
         <LoginContainer>
             <LoginBody>

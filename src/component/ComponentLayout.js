@@ -5,17 +5,16 @@ import DashboardHeader from "./DashboardHeader";
 import MainContainer from "./MainContainer";
 
 export const ComponentLayout = () => {
-    const {token} = useAuth();
+    const {user} = useAuth();
     const location = useLocation();
-    if(!token) {
-        return <Navigate to="/login" replace state={{ from: location }} />
-    }
-    return (
-        <>
-            <DashboardHeader/>
+    if (user) {
+        console.log(user)
+        return <>
+            <DashboardHeader user={user}/>
             <MainContainer child={<Outlet/>}/>
         </>
-    )
+    }
+    return <Navigate to="/login" replace state={{from: location}}/>
 }
 
 

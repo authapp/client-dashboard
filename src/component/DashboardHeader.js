@@ -23,7 +23,7 @@ const Heading = styled.div`
     font-weight: bold;
     color: var(--primary-color);
 `
-const DashboardHeader = () => {
+const DashboardHeader = ({user}) => {
     return (
         <Header>
             <Heading>
